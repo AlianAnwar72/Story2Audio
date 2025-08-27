@@ -13,13 +13,21 @@ Story2Audio converts written stories into expressive audio using **local NLP and
 
 ## Project Structure
 Story2Audio/
+
 ├── api/ # gRPC server & clients
+
 ├── src/ # Core pipeline (preprocessing, enhancement, TTS, utils)
+
 ├── tests/ # Unit & performance tests
+
 ├── Dockerfile
+
 ├── frontend.py # Gradio frontend
+
 ├── requirements.txt
+
 └── story2audio.proto # gRPC service definition
+
 
 bash
 Copy code
@@ -29,12 +37,12 @@ Copy code
 git clone <repository_url>
 cd Story2Audio
 
-# Create and activate virtual environment
+## Create and activate virtual environment
 python -m venv venv
 venv\Scripts\activate   # Windows
 source venv/bin/activate  # Linux/macOS
 
-# Install dependencies
+## Install dependencies
 pip install -r requirements.txt
 Install FFmpeg:
 
@@ -46,45 +54,24 @@ macOS: brew install ffmpeg
 
 Usage
 Run gRPC Server
-bash
-Copy code
+
 python api/server.py
 Server runs at localhost:50051.
 
-Run Gradio Frontend
-bash
-Copy code
+## Run Gradio Frontend
+
 python frontend.py
 Access it via the displayed link (e.g., http://127.0.0.1:7860).
 
 Docker Deployment
-bash
-Copy code
+
 docker build -t story2audio .
 docker run -p 50051:50051 story2audio
 Testing
 Run unit tests:
 
-bash
-Copy code
 pytest tests/test_api.py
 Run performance tests:
 
-bash
-Copy code
+
 locust -f tests/performance_test.py --headless -u 10 -r 2 --run-time 1m
-Limitations
-CPU inference may be slow; GPU recommended.
-
-TTS model may have accent/emotion limitations.
-
-Gradio frontend is demo-grade, not production-ready.
-
-Future Improvements
-GPU acceleration
-
-Advanced timeout and retry mechanisms
-
-Production-grade frontend (React/Next.js)
-
-Enhanced scalability for high concurrency
